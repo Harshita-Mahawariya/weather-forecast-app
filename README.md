@@ -1,24 +1,30 @@
-# README
+# 🌤️ Weather Forecast App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple Ruby on Rails web application that lets users enter an address and get the current weather for that location. It uses geocoding to convert addresses to coordinates and fetches real-time weather data using an external API.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## ✨ Features
 
-* System dependencies
+- Enter any address
+- Get real-time weather details
+- Displays temperature, conditions, and location
+- Minimal, clean design with a cream yellow and light brown color scheme
 
-* Configuration
+---
 
-* Database creation
+## 🛠️ Tech Stack
 
-* Database initialization
+- Ruby on Rails 8
+- Geocoder gem
+- Weather API (e.g., OpenWeatherMap or WeatherAPI)
 
-* How to run the test suite
+---
 
-* Services (job queues, cache servers, search engines, etc.)
+## 🚀 Getting Started
 
-* Deployment instructions
+### 1. Clone the repository
 
-* ...
+```bash
+git clone https://github.com/your-username/weather-forecast-app.git
+cd weather-forecast-app
