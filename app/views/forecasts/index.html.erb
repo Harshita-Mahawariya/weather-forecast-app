@@ -1,0 +1,102 @@
+<style>
+  body {
+    background-color: #fff9db; /* Creamy yellow */
+    color: #000000; /* Black text */
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    text-align: center;
+    background-color: #fffef2;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .input-field {
+    padding: 0.5rem;
+    width: 80%;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  .btn {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    background-color: #f4c430; /* Soft gold */
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #e5b000;
+  }
+
+  .card {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: #fff9e6;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    text-align: left;
+  }
+
+  .card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+
+  .card p {
+    margin: 0.5rem 0;
+  }
+
+  .cached {
+    font-style: italic;
+    color: #555;
+    margin-top: 1rem;
+  }
+</style>
+
+<div class="container">
+  <h1>🌤️ Weather Forecast</h1>
+
+  <%= form_with url: "/forecast", method: :post, local: true do |f| %>
+    <div class="form-group">
+      <%= f.label :address, "Enter your address:" %><br>
+      <%= f.text_field :address, required: true, class: "input-field" %>
+    </div>
+    <%= f.submit "Check Forecast", class: "btn" %>
+  <% end %>
+
+  <% if @forecast %>
+    <div class="card">
+      <h3>📍 <%= @location %></h3>
+      <p><strong>Current:</strong> <%= @forecast["main"]["temp"] %>°C</p>
+      <p><strong>Feels Like:</strong> <%= @forecast["main"]["feels_like"] %>°C</p>
+      <p><strong>High:</strong> <%= @forecast["main"]["temp_max"] %>°C</p>
+      <p><strong>Low:</strong> <%= @forecast["main"]["temp_min"] %>°C</p>
+      <p><strong>Humidity:</strong> <%= @forecast["main"]["humidity"] %>%</p>
+      <p><strong>Summary:</strong> <%= @forecast["weather"][0]["description"].capitalize %></p>
+      <p><strong>Wind Speed:</strong> <%= @forecast["wind"]["speed"] %> m/s</p>
+      <% if @from_cache %>
+        <p class="cached">🔁 Loaded from cache</p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
